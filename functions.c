@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"labyrinthAPI.h"
-#include"functions.h"
+#include"functions.h"				//test de commentaire
 
 
 #ifndef functions_c
