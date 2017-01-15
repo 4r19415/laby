@@ -8,7 +8,7 @@ LIBS = -L $(LIBDIR)/lib
 LDFLAGS = -lm -lcgs
 
 # fichiers du projet
-SRC = template.c functions.c
+SRC = template.c functions.c a_star.c
 OBJ = $(SRC:.c=.o)
 EXEC = template
 
