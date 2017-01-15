@@ -3,6 +3,18 @@
 #ifndef functions_h
 #define functions_h
 
+typedef struct prev{
+
+	int x,y;
+	int cost;
+	int heuristique;
+	int xp, yp;
+	
+	struct prev * p_case;
+
+
+}Case;
+
 typedef struct {
 
 	char ** plateau;
@@ -39,7 +51,7 @@ void update(Lab *lab, t_move move, int player);
 
 void rotation(Lab *lab, t_move move, int player);
 
-int heuristique(Lab *lab, int player);
+int heuristique(Lab *lab, int x, int y);
 
 
 #endif

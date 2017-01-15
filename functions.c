@@ -12,12 +12,44 @@
 
 
 
-int heuristique(Lab *lab, int player)
+
+
+
+t_move a_star(Lab * lab, int player)
 {
-	if (player == 0) 
-		return(abs(lab->j1_posX-lab->t_posX)+abs(lab->j1_posY-lab->t_posY));
-	else return(abs(lab->j2_posX-lab->t_posX)+abs(lab->j2_posY-lab->t_posY));
+	Case * open_list = (Case *) malloc(sizeof(Case)*lab->sizeX*lab->sizeY);
+	int n_open_list = 0;
+	
+	Case * close_list = (Case *) malloc(sizeof(Case)*lab->sizeX*lab->sizeY);
+	int n_close_list = 0;
+	
+	Case first_case;
+	
+	if (player == 0)
+	{
+		first_case.x = (lab->j1_posX);
+		first_case.y = (lab->j1_posY);
+	}
+	else
+	{
+		first_case.x = (lab->j2_posX);
+		first_case.y = (lab->j2_posY);
+	}
+
+	first_case.heuristique = heuristique(lab, first_case.x, first_case.y);
+	first_case.cost = 0;
+	first_case.p_case = NULL;
+	
+	open_list[0] = first_case;
+	
 }
+
+
+int heuristique(Lab *lab, int x, int y)
+{
+	return(abs(x-lab->t_posX)+abs(y-lab->t_posY));
+}
+
 
 
 
