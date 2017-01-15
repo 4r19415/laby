@@ -92,6 +92,8 @@ int main()
 	            
 	            //show_plateau( lab );
 	            
+	            a_star(&lab, player);
+	            
 	            
 	            player = 1;
 	          }

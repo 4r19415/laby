@@ -53,5 +53,9 @@ void rotation(Lab *lab, t_move move, int player);
 
 int heuristique(Lab *lab, int x, int y);
 
+t_move a_star(Lab * lab, int player);
+
+Case * search_for_neighbour(Lab * lab, Case watched_case);
+
 
 #endif
