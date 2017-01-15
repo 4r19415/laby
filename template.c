@@ -92,6 +92,8 @@ int main()
 	            
 	            //show_plateau( lab );
 	            
+	            printf("heuristique = %d\n",heuristique(&lab,player));
+	            
 	            
 	            player = 1;
 	          }

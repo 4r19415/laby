@@ -10,6 +10,17 @@
 #define DEBUG
 #undef DEBUG
 
+
+
+int heuristique(Lab *lab, int player)
+{
+	if (player == 0) 
+		return(abs(lab->j1_posX-lab->t_posX)+abs(lab->j1_posY-lab->t_posY));
+	else return(abs(lab->j2_posX-lab->t_posX)+abs(lab->j2_posY-lab->t_posY));
+}
+
+
+
 t_move playRandom (Lab *lab, int player)
 {
 	int a=0, randn;

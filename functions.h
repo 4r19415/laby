@@ -39,5 +39,7 @@ void update(Lab *lab, t_move move, int player);
 
 void rotation(Lab *lab, t_move move, int player);
 
+int heuristique(Lab *lab, int player);
+
 
 #endif
