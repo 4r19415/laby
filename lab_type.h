@@ -32,6 +32,8 @@ typedef struct prev{
 	int xp, yp;
 	
 	struct prev * p_case;
+	
+	int treasure;
 
 
 }Case;

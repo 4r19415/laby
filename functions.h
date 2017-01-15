@@ -1,5 +1,5 @@
 #include "labyrinthAPI.h"
-#include "lab_type_h"
+#include "lab_type.h"
 
 #ifndef functions_h
 #define functions_h

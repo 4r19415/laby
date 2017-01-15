@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "labyrinthAPI.h"
 #include "functions.h"
+#include "a_star.h"
 #include <unistd.h>
 
 
@@ -79,7 +80,8 @@ int main()
 	          }
 	        else
 	          {
-	            move = playRandom (&lab, player);
+	            //move = playRandom (&lab, player);
+	            move = a_star(&lab, player);
 	            
 	      	    #ifdef DEBUG
 	                printf("sendMove\n");
