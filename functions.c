@@ -8,7 +8,7 @@
 #define functions_c
 
 #define DEBUG
-//#undef DEBUG
+#undef DEBUG
 
 t_move playRandom (Lab *lab, int player)
 {
@@ -86,7 +86,7 @@ int possible(Lab *lab, t_move move, int player)
 				{
 					if (lab->plateau[0][lab->j1_posX] != '|' ) a = 1;
 				}
-				else if (lab->plateau[lab->j1_posY-1][lab->j1_posX] != '|' ) a = 1;
+				else if (lab->plateau[lab->j1_posY+1][lab->j1_posX] != '|' ) a = 1;
 			}
 			else
 			{
@@ -94,10 +94,10 @@ int possible(Lab *lab, t_move move, int player)
 				{
 					if (lab->plateau[0][lab->j2_posX] != '|' ) a = 1;
 				}
-				else if (lab->plateau[lab->j2_posY-1][lab->j2_posX] != '|' ) a = 1;
+				else if (lab->plateau[lab->j2_posY+1][lab->j2_posX] != '|' ) a = 1;
 			}
 			
-			#ifdef DEBUG
+			#ifdef DEBUG_RANDOM
 				if(a==1)
 					printf(" ==== move down asked by %d ",player );
 				if (player == 0)
@@ -105,16 +105,34 @@ int possible(Lab *lab, t_move move, int player)
 					if (lab->j1_posY == lab->sizeY-1)
 					{
 						printf(" jump, %c\n",lab->plateau[0][lab->j1_posX] );
+						lab->plateau[0][lab->j1_posX] = 'M';
+						show_plateau( *lab );
+						lab->plateau[0][lab->j1_posX] = ' ';
 					}
-					else printf(" no jump, '%c' \n",lab->plateau[lab->j1_posY-1][lab->j1_posX]);
+					else 
+					{
+						printf(" no jump, '%c' \n",lab->plateau[lab->j1_posY+1][lab->j1_posX]);
+						lab->plateau[lab->j1_posY+1][lab->j1_posX] = 'M';
+						show_plateau( *lab );
+						lab->plateau[lab->j1_posY+1][lab->j1_posX] = ' ';
+					}
 				}
 				else
 				{
 					if (lab->j1_posY == lab->sizeY-1)
 					{
 						printf(" jump, %c\n",lab->plateau[0][lab->j2_posX] );
+						lab->plateau[0][lab->j2_posX] = 'M';
+						show_plateau( *lab );
+						lab->plateau[0][lab->j2_posX] = ' ';
 					}
-					else printf(" no jump, '%c' \n",lab->plateau[lab->j1_posY-1][lab->j2_posX]);
+					else 
+					{
+						printf(" no jump, '%c' \n",lab->plateau[lab->j1_posY+1][lab->j2_posX]);
+						lab->plateau[lab->j1_posY+1][lab->j2_posX] = 'M';
+						show_plateau( *lab );
+						lab->plateau[lab->j1_posY+1][lab->j2_posX] = ' ';
+					}
 				}
 				
 			#endif
@@ -129,7 +147,7 @@ int possible(Lab *lab, t_move move, int player)
 				{
 					if (lab->plateau[lab->sizeY-1][lab->j1_posX] != '|' ) a = 1;
 				}
-				else if (lab->plateau[lab->j1_posY+1][lab->j1_posX] != '|' ) a = 1;
+				else if (lab->plateau[lab->j1_posY-1][lab->j1_posX] != '|' ) a = 1;
 			}
 			else
 			{
@@ -137,26 +155,26 @@ int possible(Lab *lab, t_move move, int player)
 				{
 					if (lab->plateau[lab->sizeY-1][lab->j2_posX] != '|' ) a = 1;
 				}
-				else if (lab->plateau[lab->j2_posY+1][lab->j2_posX] != '|' ) a = 1;
+				else if (lab->plateau[lab->j2_posY-1][lab->j2_posX] != '|' ) a = 1;
 			}
 		break;
 		
 		case MOVE_LEFT:
 			if (player == 0)
 			{
-				if (lab->j1_posX == lab->sizeX-1)
+				if (lab->j1_posX == 0)
 				{
-					if (lab->plateau[lab->j1_posY][0] != '|' ) a = 1;
+					if (lab->plateau[lab->j1_posY][lab->sizeX-1] != '|' ) a = 1;
 				}
-				else if (lab->plateau[lab->j1_posY][lab->j1_posX+1] != '|' ) a = 1;
+				else if (lab->plateau[lab->j1_posY][lab->j1_posX-1] != '|' ) a = 1;
 			}
 			else
 			{
-				if (lab->j2_posX == lab->sizeX-1)
+				if (lab->j2_posX == 0)
 				{
-					if (lab->plateau[lab->j2_posY][0] != '|' ) a = 1;
+					if (lab->plateau[lab->j2_posY][lab->sizeX-1] != '|' ) a = 1;
 				}
-				else if (lab->plateau[lab->j2_posY][lab->j2_posX+1] != '|' ) a = 1;
+				else if (lab->plateau[lab->j2_posY][lab->j2_posX-1] != '|' ) a = 1;
 			}
 		break;
 		
@@ -167,7 +185,7 @@ int possible(Lab *lab, t_move move, int player)
 				{
 					if (lab->plateau[lab->j1_posY][0] != '|' ) a = 1;
 				}
-				else if (lab->plateau[lab->j1_posY][lab->j1_posX-1] != '|' ) a = 1;
+				else if (lab->plateau[lab->j1_posY][lab->j1_posX+1] != '|' ) a = 1;
 			}
 			else
 			{
@@ -180,7 +198,7 @@ int possible(Lab *lab, t_move move, int player)
 		break;
 		
 		default:
-			a=1;
+			a=0;
 		break;
 		
 	}
@@ -335,8 +353,8 @@ void rotation(Lab *lab, t_move move, int player)
 	
 	}
 
-	if (player == 0) lab->j1_energy-=5;
-	else lab->j2_energy-=5;
+	if (player == 0) lab->j1_energy-=6;
+	else lab->j2_energy-=6;
 
 }
 
@@ -492,6 +510,7 @@ void show_plateau( Lab lab )
 			}
       printf("\n ");
     }
+    printf("Energy 1 = %d, energy 2 = %d\n", lab.j1_energy, lab.j2_energy);
 }
 
 

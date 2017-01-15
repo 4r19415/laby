@@ -44,6 +44,9 @@ int main()
 	
 	Lab lab =  make_lab(labData, sizeX, sizeY, player);
 	
+	lab.j2_energy = 2;
+	lab.j1_energy = 0;
+	
 	 
 	//return(0);
 	 
@@ -65,9 +68,13 @@ int main()
 	            ret = getMove( &move);
 	            
 	            update(&lab, move, player);
-	            show_plateau( lab );
-	            //playMove( &lab, move);
+	            
 	            lab.j2_energy++;
+	            
+	            //show_plateau( lab );
+	            //playMove( &lab, move);
+	            
+	            
 	            player = 0;
 	          }
 	        else
@@ -80,8 +87,12 @@ int main()
 	            ret = sendMove(move);
 	            
 	            update(&lab, move, player);
+	            
 	            lab.j1_energy++;
-	            show_plateau( lab );
+	            
+	            //show_plateau( lab );
+	            
+	            
 	            player = 1;
 	          }
 	
