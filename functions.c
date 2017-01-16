@@ -265,17 +265,17 @@ int possible(Lab *lab, t_move move, int player)
 
 void rotation(Lab *lab, t_move move, int player) 
 /**
-    Function:    posible
-                 say if  a player can do a move in the rules
+    Function:    rotation
+                 change the lab if one player make a rotation
 
     @params:    Lab * lab (cf lab_type.h) the lab 
-    						t_move move (cf ret_type.c) the move in question
-    						int player (0 or 1)
+    						t_move move (cf ret_type.c) the move in question 
+    									(it should be a rotation)
+    						int player (0 or 1) who make a rotation
 
-    @returns:  	int 1 if the move is OK
-    								0 if the move is not OK
-    
+    @returns:  	    
 */
+
 {
 	int i,stock;
 	
@@ -424,6 +424,18 @@ void rotation(Lab *lab, t_move move, int player)
 }
 
 void update(Lab *lab, t_move move, int player)
+/**
+    Function:    update
+                 change the lab when a player make a move
+                 if its a rotation, it will call rotation
+
+    @params:    Lab * lab (cf lab_type.h) the lab 
+    						t_move move (cf ret_type.c) the move in question
+    						int player (0 or 1)
+
+    @returns:  
+    
+*/
 {
 
 	lab->last_move = move;
@@ -503,6 +515,19 @@ void update(Lab *lab, t_move move, int player)
 
 
 Lab make_lab(char * labData, int sizeX, int sizeY, int player)
+/**
+    Function:    make lab
+                 creat a Lab object from a 1d array of char
+
+    @params:    char* labdata with '0' for a corridor
+    															 '1' for a wall
+    						int sizeX, the number of column
+    						int sizeY, the number of lines
+    						int player the digit of the first player who play
+
+    @returns:  	Lab the lab (cf lab_type.h)
+    
+*/
 {
 	Lab lab;
 	
@@ -551,6 +576,16 @@ Lab make_lab(char * labData, int sizeX, int sizeY, int player)
 
 
 void show_plateau( Lab lab )
+/**
+    Function:    show_plateau
+                 show the plateau of a Lab
+
+    @params:    Lab * lab (cf lab_type.h) the lab 
+    					
+
+    @returns:  	
+    
+*/
 {    
 
     int i, j;
@@ -580,6 +615,18 @@ void show_plateau( Lab lab )
 
 
 void show_lab( char* labData, int sizeX, int sizeY)
+/**
+    Function:    show_lab
+                 show the plateau of a Lab in the herdest way
+                 depreciated, use show_plateau 
+
+    @params:    char * array of char '0' or '1'
+    						int sizeX, the number of columns
+    						int sizeY, thne number of lines    					
+
+    @returns:  	
+    
+*/
 {    
     int i, j;
     for(i=0; i<sizeY; i++ )
@@ -593,9 +640,5 @@ void show_lab( char* labData, int sizeX, int sizeY)
     }
 }
 
-int verif(int move, int value, char* labData, int sizeX, int sizeY)
-{
-    return(0);
-}
 
 #endif
