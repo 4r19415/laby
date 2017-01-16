@@ -32,7 +32,7 @@ int main()
 	int sizeX,sizeY;
 
 	/* connection to the server */
-	connectToServer( "pc4023.polytech.upmc.fr", 1234, "the_plague");
+	connectToServer( "pc4022.polytech.upmc.fr", 1234, "the_plague");
 	
 	
 	/* wait for a game, and retrieve informations about it */

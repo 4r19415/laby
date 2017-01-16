@@ -1,7 +1,34 @@
+/*############################################################################
+  #                                                                          #
+  #  functions.c                                                             #
+  #                                                                          #
+  #  For project ROB3 labyrrinth                                             #
+  #                                                                          #
+  #  Authors: <Bezieau justin>      justin.bezieau@gmx.com                   #
+  #           <Ge Jiaxun>           jx_g@hotmail.fr                          #
+  #                                                                          #
+  #  Verion of the 16/01/2017                                                #
+  #                                                                          #
+  #  This program is free software: you can redistribute it and/or modify    #
+  #  it under the terms of the GNU General Public License as published by    #
+  #  the Free Software Foundation, either version 3 of the License, or       #
+  #  (at your option) any later version.                                     #
+  #                                                                          #
+  #  This program is distributed in the hope that it will be useful,         #
+  #  but WITHOUT ANY WARRANTY; without even the implied warranty of          #
+  #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           #
+  #  GNU General Public License for more details.                            #
+  #                                                                          #
+  #  You should have received a copy of the GNU General Public License       #
+  #  along with this program.  If not, see <http://www.gnu.org/licenses/>.   #
+  #                                                                          #
+  #                                                                          #
+  ############################################################################*/
+  
 #include<stdio.h>
 #include<stdlib.h>
 #include"labyrinthAPI.h"
-#include"functions.h"				//test de commentaire
+#include"functions.h"				
 
 
 #ifndef functions_c
@@ -16,6 +43,15 @@
 
 
 t_move playRandom (Lab *lab, int player)
+/**
+    Function:    playRandom
+                 send a move randomly but a possible move
+
+    @params:    Lab * lab (cf lab_type.h)
+
+    @returns:  t_move move (cf ret_type.c) the random posible move
+    
+*/
 {
 	int a=0, randn;
 	
@@ -59,6 +95,18 @@ t_move playRandom (Lab *lab, int player)
 
 
 int possible(Lab *lab, t_move move, int player)
+/**
+    Function:    posible
+                 say if  a player can do a move in the rules
+
+    @params:    Lab * lab (cf lab_type.h) the lab 
+    						t_move move (cf ret_type.c) the move in question
+    						int player (0 or 1) the player digit
+
+    @returns:  	int 1 if the move is OK
+    								0 if the move is not OK
+    
+*/
 {
 	int a = 0;
 	
@@ -216,6 +264,18 @@ int possible(Lab *lab, t_move move, int player)
 
 
 void rotation(Lab *lab, t_move move, int player) 
+/**
+    Function:    posible
+                 say if  a player can do a move in the rules
+
+    @params:    Lab * lab (cf lab_type.h) the lab 
+    						t_move move (cf ret_type.c) the move in question
+    						int player (0 or 1)
+
+    @returns:  	int 1 if the move is OK
+    								0 if the move is not OK
+    
+*/
 {
 	int i,stock;
 	
